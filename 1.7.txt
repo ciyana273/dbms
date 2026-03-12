@@ -1,0 +1,48 @@
+﻿1.7
+
+1. select pname,price from product where pname!='pen' order by price;
++----------+-------+
+| pname    | price |
++----------+-------+
+| pencil   |    82 |
+| notebook |   122 |
++----------+-------+
+
+
+2.   select min(price),max(price),avg(price) from product;
++------------+------------+------------+
+| min(price) | max(price) | avg(price) |
++------------+------------+------------+
+|         82 |        122 |   102.0000 |
++------------+------------+------------+
+
+3. select city,count(id) from customer group by city;
++-----------+-----------+
+| city      | count(id) |
++-----------+-----------+
+| kozhikode |         1 |
+| kollam    |         1 |
+| thrissur  |         1 |
++-----------+-----------+
+
+4.select count(*),city from customer group by city having count(*)>0;
++----------+-----------+
+| count(*) | city      |
++----------+-----------+
+|        1 | kozhikode |
+|        1 | kollam    |
+|        1 | thrissur  |
++----------+-----------+
+
+5. select concat(name,'lives in',city)cust_info from customer;
++-------------------------+
+| cust_info               |
++-------------------------+
+| irfanalives inkozhikode |
+| mariyalives inkollam    |
+| thejalives inthrissur   |
++-------------------------+
+
+
+
+

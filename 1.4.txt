@@ -1,0 +1,142 @@
+﻿Experiment 1.4
+
+1. mysql> select*from customer;
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 110 | mariya | street123   | kollam    | 678905421 |
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
++-----+--------+-------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+2. mysql> select pname,price from product;
++----------+-------+
+| pname    | price |
++----------+-------+
+| pen      |   102 |
+| notebook |   122 |
+| pencil   |    82 |
++----------+-------+
+
+
+3. mysql> select DISTINCT inv_id from invoice_item;
++--------+
+| inv_id |
++--------+
+|     99 |
+|    101 |
+|    102 |
++--------+
+
+
+4. mysql> select*from product where price between 50 and 150;
++------+----------+-------+
+| pid  | pname    | price |
++------+----------+-------+
+| 2000 | pen      |   102 |
+| 2003 | notebook |   122 |
+| 2004 | pencil   |    82 |
+
+
+
+
+5.  select*from customer where city='kozhikode'or city='kollam';
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 110 | mariya | street123   | kollam    | 678905421 |
+
+
+
+
+
+
+
+
+6. select*from invoice_master where inv_date between '2026-09-14' and '2026-09-24';
++--------+------+------------+
+| inv_id | id   | inv_date   |
++--------+------+------------+
+|     99 |  104 | 2026-09-24 |
+|    102 |  110 | 2026-09-14 |
++--------+------+------------+
+
+7. select*from customer where city!='kozhikode';
++-----+--------+-------------+----------+-----------+
+| id  | name   | address     | city     | ph_no     |
++-----+--------+-------------+----------+-----------+
+| 110 | mariya | street123   | kollam   | 678905421 |
+| 120 | theja  | thazhevitil | thrissur | 754056543 |
++-----+--------+-------------+----------+-----------+    
+
+8.select*from customer where ph_no is null;
+Empty set (0.00 sec)
+
+9. select*from customer order by name desc;
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
+| 110 | mariya | street123   | kollam    | 678905421 |
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+
+
+
+
+
+
+
+10. select*from customer order by city asc,name desc;
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 110 | mariya | street123   | kollam    | 678905421 |
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
++-----+--------+-------------+-----------+-----------+0
+ 
+11. select name from customer where name like 'm%';
++--------+
+| name   |
++--------+
+| mariya |
+
+12. select name from customer where name like '%i%' or name like '%e%';
++--------+
+| name   |
++--------+
+| irfana |
+| mariya |
+| theja  |
+13.select name from customer where name like '___%';
++--------+
+| name   |
++--------+
+| irfana |
+| mariya |
+| theja  |
++--------+
+
+
+14.select name from customer where name like '___i%';
++--------+
+| name   |
++--------+
+| mariya |
++--------+
+
+
+15.select name from customer where name like 'i___%';
++--------+
+| name   |
++--------+
+| irfana |
++--------+
+
+
+
+
+
+

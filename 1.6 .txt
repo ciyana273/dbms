@@ -1,0 +1,26 @@
+﻿1.6 :
+
+1. create view ai as select*from customer where id in(select id from invoice_master);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from ai;
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 110 | mariya | street123   | kollam    | 678905421 |
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
++-----+--------+-------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+2. create view invoice_product as select customer.name,invoice_master.inv_id,product.pid,invoice_item.quantity from customer inner join invoice_master on customer.id=invoice_master.id inner join invoice_item on invoice_master.inv_id=invoice_item.inv_id inner join product on product.pid=invoice_item.pid;
+Query OK, 0 rows affected (0.00 sec)
+
+ select*from invoice_product;
++--------+--------+------+----------+
+| name   | inv_id | pid  | quantity |
++--------+--------+------+----------+
+| irfana |     99 | 2003 |        5 |
+| theja  |    101 | 2000 |       10 |
+| mariya |    102 | 2004 |       20 |
++--------+--------+------+----------+

@@ -1,0 +1,51 @@
+﻿1.5 ACCESSING DATABASE(SUBQUERY)
+
+1. mysql> select name from customer where id in (select id from invoice_master where inv_date='2026-09-24');
++--------+
+| name   |
++--------+
+| irfana |
++--------+
+
+
+2.  select pname,price from product where pid in(select pid from invoice_item);
++----------+-------+
+| pname    | price |
++----------+-------+
+| pen      |   102 |
+| notebook |   122 |
+| pencil   |    82 |
++----------+-------+
+
+3.select pname from product where pid in(select pid from invoice_item where quantity>10);
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+
+4.  select *from product where pid NOT in(select pid from invoice_item);
+Empty set (0.00 sec)
+
+5. select name from customer where id in(select id from invoice_master where inv_id in(select inv_id from invoice_item where pid in(select pid from product where pname='pen' OR pname='pencil')));
++--------+
+| name   |
++--------+
+| mariya |
+| theja  |
++--------+
+
+6. select *from product where pid in(select pid from invoice_item where inv_id in(select inv_id from invoice_master where id in(select id from customer where name='theja')));
++------+-------+-------+
+| pid  | pname | price |
++------+-------+-------+
+| 2000 | pen   |   102 |
++------+-------+-------+
+
+7.select distinct name from customer where id in(select id from invoice_master where inv_id in(select inv_id from invoice_item group by inv_id having count(*)>1));
+Empty set
+
+
+
+
+
