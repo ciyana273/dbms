@@ -1,0 +1,72 @@
+﻿2.3- TRIGGER
+
+1. mysql> delimiter //
+mysql> create table customer_1(id int,name varchar(15),address varchar(15),city varchar(25),phno bigint); //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create trigger updaters
+    -> before update
+    -> on customer for each row
+    -> begin
+    -> insert into customer_1
+    -> values(old.id,old.name,old.address,old.city,old.ph_no);
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from customer; //
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 110 | mariya | street123   | kollam    | 678905421 |
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
++-----+--------+-------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update customer set city='kannur' where id=110;
+    -> //
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from customer; //
++-----+--------+-------------+-----------+-----------+
+| id  | name   | address     | city      | ph_no     |
++-----+--------+-------------+-----------+-----------+
+| 104 | irfana | thekkepuram | kozhikode | 701216543 |
+| 110 | mariya | street123   | kannur    | 678905421 |
+| 120 | theja  | thazhevitil | thrissur  | 754056543 |
++-----+--------+-------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+2.  mysql> create trigger product_price
+    -> before insert
+    -> on product
+    -> for each row
+    -> begin
+    -> if new.price<5 then
+    -> set new.price=10;
+    -> end if;
+    -> end //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into product values(17,'color pencil',4);
+    -> //
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from product; //
++------+--------------+-------+
+| pid  | pname        | price |
++------+--------------+-------+
+|   17 | color pencil |    10 |
+| 2000 | pen          |   107 |
+| 2003 | notebook     |   127 |
+| 2004 | pencil       |    87 |
++------+--------------+-------+
+4 rows in set (0.00 sec)
