@@ -1,0 +1,37 @@
+﻿1.9
+
+1 select id,city from customer where city="thrissur" or city= "kannur";
++-----+----------+
+| id  | city     |
++-----+----------+
+| 110 | kannur   |
+| 120 | thrissur |
++-----+----------+    
+
+2. Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from product;
++------+--------------+-------+
+| pid  | pname        | price |
++------+--------------+-------+
+|   17 | color pencil |    15 |
+| 2000 | pen          |   112 |
+| 2003 | notebook     |   132 |
+| 2004 | pencil       |    92 |
++------+--------------+-------+
+4 rows in set (0.00 sec)
+
+3. select * from customer where ph_no is NULL and city="thrissur";
+Empty set (0.00 sec)
+
+4. elect pname from product where pid in(select pid from
+invoice_item where quantity = 20);
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+
